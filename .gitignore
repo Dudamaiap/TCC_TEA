@@ -1,0 +1,31 @@
+# Ambiente / caches
+.venv/
+venv/
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.pytest_cache/
+.DS_Store
+Thumbs.db
+
+# Dados grandes (ABIDE I: dezenas de GB) — não versionar
+Data/raw/*
+Data/roi_timeseries/*
+Data/conectivity/*
+Data/processed/*
+
+# Artefatos gerados
+Models/*
+Results/*
+Figures/*
+Docs/*
+
+# Mantém as pastas vazias no repositório
+!Data/raw/.gitkeep
+!Data/roi_timeseries/.gitkeep
+!Data/conectivity/.gitkeep
+!Data/processed/.gitkeep
+!Models/.gitkeep
+!Results/.gitkeep
+!Figures/.gitkeep
+!Docs/.gitkeep

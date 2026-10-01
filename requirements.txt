@@ -1,0 +1,25 @@
+# Dependências do projeto TCC_TEA_TDAH (ABIDE I — TEA).
+# Versões fixadas = as observadas nas saídas dos notebooks originais (Colab, Python 3.13).
+# Python recomendado: 3.12 ou 3.13 (xgboost 3.4.x e pandas 3.x exigem Python >= 3.12 / >= 3.11).
+
+numpy==2.1.3
+pandas==3.0.6
+scipy==1.16.3
+scikit-learn==1.6.1
+nilearn==0.14.1
+nibabel==5.4.2
+xgboost==3.4.1
+joblib==1.6.0
+
+# Visualização
+matplotlib>=3.9
+seaborn>=0.13
+
+# Explicabilidade
+shap>=0.46
+
+# Deep Learning (CPU; veja o README para GPU no Windows)
+tensorflow>=2.18
+
+# Jupyter no VS Code
+ipykernel>=6.29
