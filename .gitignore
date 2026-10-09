@@ -1,31 +1,96 @@
-# Ambiente / caches
+# =========================
+# TCC TEA/TDAH — .gitignore
+# =========================
+
+# --- Dados neuroimagem e arquivos processados grandes ---
+# Permanecem no computador/Google Drive, mas não são enviados ao GitHub.
+data/
+dados/
+dataset/
+datasets/
+ABIDE_pcp/
+ADHD200/
+ADHD-200/
+abide/
+adhd200/
+
+# Arquivos pickle de dados processados
+*.pkl
+*.pickle
+
+# Matrizes e séries temporais
+*connectivity_matrices*
+*conectivity_matrices*
+*roi_timeseries*
+*dataset_abide_processado*
+
+# Dados neuroimagem comuns
+*.nii
+*.nii.gz
+*.img
+*.hdr
+*.mgh
+*.mgz
+*.dtseries.nii
+*.func.gii
+
+# Arquivos tabulares grandes ou com dados fenotípicos locais
+# Remova o comentário das linhas abaixo apenas se quiser ignorar todos esses formatos:
+# *.csv
+# *.tsv
+# *.xlsx
+
+# --- Ambientes Python e caches ---
 .venv/
 venv/
+env/
+ENV/
 __pycache__/
-.ipynb_checkpoints/
-*.pyc
+*.py[cod]
+*$py.class
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.cache/
+joblib_cache/
+
+# --- Modelos treinados e checkpoints ---
+checkpoints/
+models/
+modelos/
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.keras
+*.joblib
+*.onnx
+
+# --- Resultados locais e arquivos temporários ---
+tmp/
+temp/
+logs/
+*.log
+*.tmp
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Dados grandes (ABIDE I: dezenas de GB) — não versionar
-Data/raw/*
-Data/roi_timeseries/*
-Data/conectivity/*
-Data/processed/*
+# --- Configurações locais e credenciais ---
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+*.pem
+*.key
 
-# Artefatos gerados
-Models/*
-Results/*
-Figures/*
-Docs/*
+# --- IDEs ---
+.vscode/
+.idea/
 
-# Mantém as pastas vazias no repositório
-!Data/raw/.gitkeep
-!Data/roi_timeseries/.gitkeep
-!Data/conectivity/.gitkeep
-!Data/processed/.gitkeep
-!Models/.gitkeep
-!Results/.gitkeep
-!Figures/.gitkeep
-!Docs/.gitkeep
+# --- Observação ---
+# Os notebooks .ipynb NÃO são ignorados: eles devem ser enviados ao GitHub.
+# Se arquivos grandes já foram rastreados pelo Git antes deste .gitignore,
+# será necessário removê-los do índice com git rm --cached (sem apagar o arquivo local).

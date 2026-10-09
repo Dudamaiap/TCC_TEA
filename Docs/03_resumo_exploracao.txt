@@ -1,0 +1,10 @@
+Resumo da Exploração — ABIDE I
+Total de sujeitos: 871
+Sites: 20
+Distribuição diagnóstico: {2: 468, 1: 403}
+
+Figuras geradas em Figures/:
+- 03_fig0_rsfmri_bruto.png       (rs-fMRI sem processamento, se disponível)
+- 03_fig1_rsfmri_preprocessado.png
+- 03_fig2_atlas_cc200.png
+- 03_fig3_series_temporais.png
