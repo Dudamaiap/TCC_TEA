@@ -1,0 +1,6 @@
+modelo,auc,ic_inf,ic_sup,n_boot_validos
+Dummy_prior,0.4638,0.4203,0.5069,2000
+Dummy_estratificado,0.4702,0.4343,0.5024,2000
+SVM_RBF,0.7121,0.664,0.7486,2000
+Random_Forest,0.6532,0.616,0.6891,2000
+XGBoost,0.6781,0.6546,0.7013,2000

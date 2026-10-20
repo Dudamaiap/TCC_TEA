@@ -33,7 +33,7 @@ TCC_TEA_TDAH/
 
 ## Requisitos
 
-- **Python 3.12 ou 3.13** (versões testadas na origem: Python 3.13)
+- **Python 3.12** (os notebooks locais usam o kernel `.venv` com Python 3.12)
 - **VS Code** com as extensões *Python* e *Jupyter*
 - ~**30 GB livres** para o download completo do ABIDE I (derivativo `rois_cc200`, 871 sujeitos; o download original levou ~22 min)
 - GPU NVIDIA é **opcional** (tudo roda em CPU)
@@ -43,8 +43,14 @@ TCC_TEA_TDAH/
 Abra a pasta `TCC_TEA_TDAH/` no VS Code e, no terminal integrado:
 
 ```bash
-python -m venv .venv
+# Windows
+py -3.12 -m venv .venv
+
+# Linux / macOS
+python3.12 -m venv .venv
 ```
+
+Se `.venv` já tiver sido criado com outra versão do Python, recrie-o com um dos comandos acima antes de instalar as dependências.
 
 Ativar o ambiente:
 
@@ -67,7 +73,7 @@ pip install -r requirements.txt
 
 ### Selecionar o interpretador no VS Code
 
-1. `Ctrl+Shift+P` → **Python: Select Interpreter** → escolha `.venv` (`.venv\Scripts\python.exe`).
+1. `Ctrl+Shift+P` → **Python: Select Interpreter** → escolha o ambiente `.venv`.
 2. Abra `notebooks/01_Configuracao.ipynb` → canto superior direito **Select Kernel** → *Python Environments* → `.venv`.
 
 O arquivo `.vscode/settings.json` define `jupyter.notebookFileRoot` como a raiz do projeto, e cada notebook
