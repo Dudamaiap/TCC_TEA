@@ -1,0 +1,3 @@
+modelo,accuracy_pond,balanced_accuracy_pond,precision_pond,recall_pond,specificity_pond,f1_pond,auc_roc_pond
+GAT,0.5668,0.5752,0.5491,0.5625,0.5879,0.533,0.6198
+GCN,0.5897,0.5957,0.5665,0.5934,0.5979,0.5673,0.6275
