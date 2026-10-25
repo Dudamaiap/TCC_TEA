@@ -226,22 +226,26 @@ def tabela_por_site(d, proba, pred):
 
 
 def resumir_resultados(df_long, d=None, proba_oof=None):
-    """Médias por fold (mean/std), média ponderada pelo tamanho do fold e AUC OOF com IC por site."""
+    """Média e desvio ENTRE FOLDS (as sementes são promediadas dentro de cada fold antes), média
+    ponderada pelo tamanho do fold e AUC OOF com IC por bootstrap de sites."""
     base = df_long[df_long["tipo"] == "externo"]
-    resumo = (base.groupby("modelo")[METRICAS].agg(["mean", "std"]).round(4))
+    # 1) média das sementes dentro de cada (modelo, fold); 2) média/dp entre os folds
+    por_fold_modelo = base.groupby(["modelo", "fold"]).agg({**{m: "mean" for m in METRICAS}, "n_teste": "first"})
+    resumo = por_fold_modelo[METRICAS].groupby("modelo").agg(["mean", "std"]).round(4)
     pond = []
-    for nome, g in base.groupby("modelo"):
+    for nome, g in por_fold_modelo.groupby("modelo"):
         w = g["n_teste"].to_numpy(dtype=float)
-        # média sobre sementes dentro do fold antes de ponderar
-        gg = g.groupby("fold").agg({**{m: "mean" for m in METRICAS}, "n_teste": "first"})
-        w = gg["n_teste"].to_numpy(dtype=float)
-        pond.append({"modelo": nome, **{m + "_pond": float(np.average(gg[m].to_numpy(), weights=w))
+        pond.append({"modelo": nome, **{m + "_pond": float(np.average(g[m].to_numpy(), weights=w))
                                          for m in METRICAS}})
     out = dict(por_fold=resumo, ponderado=pd.DataFrame(pond).round(4))
     if d is not None and proba_oof is not None:
         linhas = []
         for nome, p in proba_oof.items():
-            linhas.append(dict(modelo=nome, **bootstrap_auc_por_site(d["y"], p, d["sites"])))
+            if len(np.unique(p)) <= 10:   # ex.: Dummy_prior: uma constante por fold -> AUC reunida não tem sentido
+                linhas.append(dict(modelo=nome, auc=np.nan, ic_inf=np.nan, ic_sup=np.nan, n_boot_validos=0,
+                                   obs="saída constante por fold: usar a AUC por fold (0,5)"))
+            else:
+                linhas.append(dict(modelo=nome, **bootstrap_auc_por_site(d["y"], p, d["sites"]), obs=""))
         out["auc_oof_ic"] = pd.DataFrame(linhas).round(4)
     return out
 
