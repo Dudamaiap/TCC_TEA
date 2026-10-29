@@ -1,0 +1,5 @@
+analise,n_conexoes_estaveis,n_estaveis_mesmo_sinal,max_folds_numa_conexao,rho_roi_medio
+rótulos reais,16,16,5,0.6238121953048827
+rótulos embaralhados #1,0,0,2,0.2925473636840921
+rótulos embaralhados #2,0,0,2,0.25814385359633996
+rótulos embaralhados #3,0,0,2,0.28835130878271964
