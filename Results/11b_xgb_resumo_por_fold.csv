@@ -1,0 +1,16 @@
+fold,metrica,features_com_importancia,importancia_media_top30,conexoes_no_top30,n_teste,auc_teste_registrada_notebook08,hiperparametros_notebook08,semente_notebook08,n_treino,sites_teste
+0,Cover,1438,120.55465494791666,30,41,0.6866028708133971,"{'n_estimators': 300, 'max_depth': 3, 'learning_rate': 0.1}",42,830,YALE
+0,Gain,1438,20.516099548339845,30,41,0.6866028708133971,"{'n_estimators': 300, 'max_depth': 3, 'learning_rate': 0.1}",42,830,YALE
+0,Weight,1438,5.766666666666667,30,41,0.6866028708133971,"{'n_estimators': 300, 'max_depth': 3, 'learning_rate': 0.1}",42,830,YALE
+1,Cover,1797,68.76802024841308,30,173,0.6889438943894389,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,698,"KKI, OLIN, SBL, UM_1"
+1,Gain,1797,17.844006284077963,30,173,0.6889438943894389,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,698,"KKI, OLIN, SBL, UM_1"
+1,Weight,1797,7.066666666666666,30,173,0.6889438943894389,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,698,"KKI, OLIN, SBL, UM_1"
+2,Cover,1855,83.6626766204834,30,165,0.6727056727056727,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,706,"CALTECH, LEUVEN_1, LEUVEN_2, PITT, TRINITY"
+2,Gain,1855,19.457137139638267,30,165,0.6727056727056727,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,706,"CALTECH, LEUVEN_1, LEUVEN_2, PITT, TRINITY"
+2,Weight,1855,6.666666666666667,30,165,0.6727056727056727,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,706,"CALTECH, LEUVEN_1, LEUVEN_2, PITT, TRINITY"
+3,Cover,3861,76.73822555541992,30,324,0.6762416107382552,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.01}",42,547,"CMU, NYU, OHSU, SDSU, STANFORD, UCLA_1"
+3,Gain,3861,20.341312472025553,30,324,0.6762416107382552,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.01}",42,547,"CMU, NYU, OHSU, SDSU, STANFORD, UCLA_1"
+3,Weight,3861,16.433333333333334,30,324,0.6762416107382552,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.01}",42,547,"CMU, NYU, OHSU, SDSU, STANFORD, UCLA_1"
+4,Cover,1839,82.239919535319,30,168,0.7288712422007941,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,703,"MAX_MUN, UCLA_2, UM_2, USM"
+4,Gain,1839,18.145330556233723,30,168,0.7288712422007941,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,703,"MAX_MUN, UCLA_2, UM_2, USM"
+4,Weight,1839,6.8,30,168,0.7288712422007941,"{'n_estimators': 300, 'max_depth': 5, 'learning_rate': 0.1}",42,703,"MAX_MUN, UCLA_2, UM_2, USM"

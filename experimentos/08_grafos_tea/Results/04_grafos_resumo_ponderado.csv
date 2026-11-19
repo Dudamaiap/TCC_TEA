@@ -1,0 +1,4 @@
+modelo,accuracy_pond,balanced_accuracy_pond,precision_pond,recall_pond,specificity_pond,f1_pond,auc_roc_pond
+BrainGNN,0.5943,0.5944,0.5597,0.5872,0.6015,0.5666,0.6306
+GAT,0.5756,0.5813,0.5047,0.6029,0.5597,0.5455,0.6238
+GCN,0.6016,0.5991,0.5774,0.5742,0.624,0.563,0.6408

@@ -255,6 +255,23 @@ def resumir_resultados(df_long, d=None, proba_oof=None):
 # --------------------------------------------------------------------------
 def xgb_device():
     try:
+        import shutil
+        import subprocess
+        nvidia_smi = shutil.which("nvidia-smi")
+        if nvidia_smi:
+            resultado = subprocess.run(
+                [nvidia_smi, "--query-gpu=name", "--format=csv,noheader"],
+                capture_output=True,
+                text=True,
+                timeout=10,
+                check=False,
+            )
+            if resultado.returncode == 0 and resultado.stdout.strip():
+                return "cuda"
+    except Exception:
+        pass
+
+    try:
         import torch
         return "cuda" if torch.cuda.is_available() else "cpu"
     except Exception:

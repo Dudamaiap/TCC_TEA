@@ -18,8 +18,9 @@ seaborn>=0.13
 # Explicabilidade
 shap>=0.46
 
-# Deep Learning (CPU; veja o README para GPU no Windows)
-tensorflow>=2.18
 
 # Jupyter no VS Code
 ipykernel>=6.29
+
+# GNNs e BrainNetCNN (CPU ou build GPU compatível com a máquina)
+torch>=2.4

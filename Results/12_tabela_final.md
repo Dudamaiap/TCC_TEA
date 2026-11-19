@@ -1,13 +1,11 @@
 | modelo | família | AUC média (folds) | AUC dp (folds) | AUC OOF | IC95 inf | IC95 sup | Acc. balanceada | Sensibilidade | Especificidade | F1 | IC inferior > 0,5 | execuções com 1 só classe prevista |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| SVM_RBF | Clássico | 0.724 | 0.049 | 0.712 | 0.664 | 0.749 | 0.663 | 0.598 | 0.728 | 0.625 | sim | 0 |
-| XGBoost | Clássico | 0.691 | 0.022 | 0.678 | 0.655 | 0.701 | 0.653 | 0.558 | 0.748 | 0.603 | sim | 0 |
-| Random_Forest | Clássico | 0.683 | 0.036 | 0.653 | 0.616 | 0.689 | 0.614 | 0.410 | 0.818 | 0.490 | sim | 0 |
-| GCN | Grafo | 0.640 | 0.032 | 0.615 | 0.583 | 0.646 | 0.600 | 0.600 | 0.599 | 0.577 | sim | 0 |
-| GAT | Grafo | 0.639 | 0.054 | 0.590 | 0.556 | 0.624 | 0.586 | 0.575 | 0.596 | 0.549 | sim | 0 |
-| ResNet50 | Deep learning | 0.552 | 0.041 | 0.525 | 0.491 | 0.574 | 0.543 | 0.510 | 0.575 | 0.502 | não | 0 |
-| Dummy_prior | Referência | 0.500 | 0.000 | — | — | — | 0.500 | 0.000 | 1.000 | 0.000 | — | 5 |
-| CNN | Deep learning | 0.493 | 0.017 | 0.491 | 0.454 | 0.530 | 0.504 | 0.577 | 0.430 | 0.508 | não | 0 |
-| Dummy_estratificado | Referência | 0.463 | 0.031 | — | — | — | 0.463 | 0.382 | 0.544 | 0.402 | — | 0 |
+| SVM_RBF | Clássico | 0.7241 | 0.0494 | 0.7121 | 0.664 | 0.7486 | 0.6629 | 0.5981 | 0.7277 | 0.6251 | sim | 0 |
+| XGBoost | Clássico | 0.6907 | 0.0224 | 0.6781 | 0.6546 | 0.7013 | 0.6531 | 0.558 | 0.7482 | 0.603 | sim | 0 |
+| Random_Forest | Clássico | 0.6833 | 0.0364 | 0.6532 | 0.616 | 0.6891 | 0.614 | 0.4104 | 0.8176 | 0.49 | sim | 0 |
+| GCN | Grafo | 0.6395 | 0.0319 | 0.6151 | 0.5828 | 0.6455 | 0.5998 | 0.6003 | 0.5992 | 0.5766 | sim | 0 |
+| GAT | Grafo | 0.639 | 0.0535 | 0.59 | 0.5562 | 0.6243 | 0.5857 | 0.5749 | 0.5965 | 0.5493 | sim | 0 |
+| Dummy_prior | Referência | 0.5 | 0.0 |  |  |  | 0.5 | 0.0 | 1.0 | 0.0 | — | 5 |
+| Dummy_estratificado | Referência | 0.4631 | 0.0307 |  |  |  | 0.4631 | 0.382 | 0.5441 | 0.4024 | — | 0 |
 
-Na base TEA, o melhor desempenho médio entre folds foi do modelo SVM_RBF (AUC = 0.724 ± 0.049; AUC OOF = 0.712, IC 95% por bootstrap de sites [0.664, 0.749]). O limite inferior do IC ficou acima de 0,5, o que atende ao critério definido a priori; isso não constitui prova de efeito nem de utilidade clínica. Acurácia balanceada média de 0.663, sensibilidade 0.598 e especificidade 0.728. Os resultados vêm de validação cruzada de 5 folds agrupada por site, não de um conjunto de teste independente; não foram comparados com o diagnóstico clínico.
+Na base TEA, o melhor desempenho médio entre folds continua sendo do SVM-RBF (AUC = 0.724 ± 0.049; AUC OOF = 0.712; IC 95% por bootstrap de sites [0.664, 0.749]). O limite inferior acima de 0,5 atende ao critério definido a priori, sem provar efeito ou utilidade clínica. A avaliação usa validação cruzada de cinco folds agrupada por site, não um conjunto de teste independente.

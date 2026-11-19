@@ -1,0 +1,3 @@
+modelo,auc,ic_inf,ic_sup,n_boot_validos,obs
+MLP,0.6867,0.6367,0.7243,2000,
+BrainNetCNN,0.685,0.6447,0.7156,2000,

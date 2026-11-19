@@ -1,9 +1,29 @@
 """Funções utilitárias compartilhadas (infraestrutura; não alteram a metodologia)."""
 import os
 import random
+import shutil
+import subprocess
 from pathlib import Path
 
 import numpy as np
+
+
+def _gpu_nvidia_disponivel() -> bool:
+    """Retorna True se houver uma GPU NVIDIA visível para o sistema."""
+    nvidia_smi = shutil.which("nvidia-smi")
+    if not nvidia_smi:
+        return False
+    try:
+        resultado = subprocess.run(
+            [nvidia_smi, "--query-gpu=name", "--format=csv,noheader"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return False
+    return resultado.returncode == 0 and bool(resultado.stdout.strip())
 
 
 def exigir_arquivo(caminho, notebook_origem: str) -> Path:
@@ -22,32 +42,31 @@ def exigir_arquivo(caminho, notebook_origem: str) -> Path:
     return caminho
 
 
-def definir_sementes(seed: int = 42, tensorflow: bool = False) -> None:
-    """Fixa as sementes de random e NumPy (e, opcionalmente, TensorFlow/Keras).
+def definir_sementes(seed: int = 42) -> None:
+    """Fixa as sementes de random e NumPy.
 
-    scikit-learn e XGBoost recebem a semente via `random_state` nos próprios
-    estimadores/divisores, exatamente como nos notebooks originais.
+    PyTorch recebe a semente nos notebooks de treino; scikit-learn e XGBoost
+    recebem `random_state` nos estimadores e divisores.
     """
     random.seed(seed)
     np.random.seed(seed)
-    if tensorflow:
-        import tensorflow as tf
-        tf.keras.utils.set_random_seed(seed)  # também fixa random e NumPy
 
 
 def detectar_dispositivo_xgboost(verbose: bool = True) -> str:
-    """Retorna 'cuda' se o XGBoost conseguir usar uma GPU NVIDIA; senão 'cpu'.
+    """Retorna 'cuda' se houver GPU NVIDIA visível; senão 'cpu'.
 
-    Os notebooks originais fixavam device='cuda' (GPU T4 do Colab). Em máquinas
-    sem GPU isso gera erro; aqui fazemos uma sondagem mínima e caímos para CPU.
+    A checagem é feita com indicadores do sistema/driver e não depende do
+    comportamento silencioso de fallback do XGBoost em máquinas sem GPU.
     """
-    try:
-        from xgboost import XGBClassifier
-        sonda = XGBClassifier(n_estimators=1, tree_method="hist", device="cuda", n_jobs=1)
-        sonda.fit(np.random.RandomState(0).rand(20, 4), np.array([0, 1] * 10))
-        dispositivo = "cuda"
-    except Exception:
-        dispositivo = "cpu"
+    gpu_ok = _gpu_nvidia_disponivel()
+    if not gpu_ok:
+        try:
+            import torch
+            gpu_ok = torch.cuda.is_available()
+        except Exception:
+            gpu_ok = False
+
+    dispositivo = "cuda" if gpu_ok else "cpu"
     if verbose:
         if dispositivo == "cuda":
             print("GPU detectada — XGBoost usará device='cuda'.")
@@ -56,13 +75,3 @@ def detectar_dispositivo_xgboost(verbose: bool = True) -> str:
     return dispositivo
 
 
-def info_gpu_tensorflow(verbose: bool = True):
-    """Lista GPUs visíveis ao TensorFlow, sem quebrar se não houver."""
-    import tensorflow as tf
-    gpus = tf.config.list_physical_devices("GPU")
-    if verbose:
-        if gpus:
-            print("GPU detectada:", gpus)
-        else:
-            print("GPU não detectada — executando em CPU")
-    return gpus
