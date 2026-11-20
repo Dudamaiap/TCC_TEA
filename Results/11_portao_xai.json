@@ -1,10 +1,26 @@
 {
   "base": "TEA",
-  "modelo": "SVM_RBF",
-  "auc_oof": 0.7121004856736867,
-  "ic_inf": 0.6639976002036252,
-  "ic_sup": 0.7486072925890825,
-  "acima_do_acaso": true,
+  "modelos": [
+    "SVM_RBF",
+    "MLP"
+  ],
+  "resultados": {
+    "SVM_RBF": {
+      "auc_oof": 0.7121004856736867,
+      "ic_inf": 0.6639976002036252,
+      "ic_sup": 0.7486072925890825,
+      "acima_do_acaso": true,
+      "permutacao_rodou": true
+    },
+    "MLP": {
+      "auc_oof": 0.686708659413374,
+      "ic_inf": 0.6366916104657094,
+      "ic_sup": 0.7243350630381933,
+      "acima_do_acaso": true,
+      "permutacao_rodou": true
+    }
+  },
   "auc_oof_linear": 0.7201862102606519,
-  "permutacao_rodou": true
+  "portao_multimodelo_aberto": true,
+  "criterio": "IC95% OOF por bootstrap de sites com limite inferior > 0,5"
 }
