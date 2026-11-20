@@ -1,4 +1,0 @@
-modelo,auc,ic_inf,ic_sup,n_boot_validos,obs
-GCN,0.6001,0.5694,0.6322,2000,
-GAT,0.6061,0.5699,0.644,2000,
-BrainGNN,0.6128,0.5814,0.6447,2000,
